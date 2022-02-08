@@ -32,7 +32,7 @@ python3 -m venv venvtmp
 eval $stop_cmd
 source venvtmp/bin/activate
 
-export DJANGO_SETTINGS_MODULE=nextcloudappstore.settings.production
+export DJANGO_SETTINGS_MODULE=TechKiteOFFICEappstore.settings.production
 export LANG=en_EN.UTF-8
 pip install --upgrade wheel
 pip install --upgrade pip
@@ -41,7 +41,7 @@ pip install -r requirements/production.txt
 yarn install
 yarn run build
 python manage.py migrate
-python manage.py loaddata nextcloudappstore/core/fixtures/*.json
+python manage.py loaddata TechKiteOFFICEappstore/core/fixtures/*.json
 python manage.py collectstatic --noinput
 python manage.py compilemessages
 python manage.py importdbtranslations

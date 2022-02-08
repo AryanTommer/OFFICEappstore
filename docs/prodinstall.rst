@@ -38,8 +38,8 @@ and create a user and database::
     sudo -s
     su - postgres
     psql
-    CREATE USER nextcloudappstore WITH PASSWORD 'password';
-    CREATE DATABASE nextcloudappstore OWNER nextcloudappstore;
+    CREATE USER TechKiteOFFICEappstore WITH PASSWORD 'password';
+    CREATE DATABASE TechKiteOFFICEappstore OWNER TechKiteOFFICEappstore;
     \q
     exit
     exit
@@ -57,7 +57,7 @@ Before you begin to set up the App Store, make sure that your locales are set up
 Afterwards change into your preferred target folder, clone the repository using git and change into it::
 
     cd /path/to/target
-    git clone https://github.com/nextcloud/appstore.git
+    git clone https://github.com/TechKiteOFFICE/appstore.git
     cd appstore
 
 Afterwards set up a new virtual environment by running the following command::
@@ -86,11 +86,11 @@ Next install the required libraries::
 
 Adjusting Default Settings
 --------------------------
-To get your instance running in production you need to create your production settings file in **nextcloudappstore/settings/production.py** which overwrites and enhances the settings defined in **nextcloudappstore/settings/base.py**. The production settings file is excluded from version control. For a basic configuration take a look at :ref:`an example production configuration <production-configuration>`
+To get your instance running in production you need to create your production settings file in **TechKiteOFFICEappstore/settings/production.py** which overwrites and enhances the settings defined in **TechKiteOFFICEappstore/settings/base.py**. The production settings file is excluded from version control. For a basic configuration take a look at :ref:`an example production configuration <production-configuration>`
 
 Then set the file as the active settings file::
 
-    export DJANGO_SETTINGS_MODULE=nextcloudappstore.settings.production
+    export DJANGO_SETTINGS_MODULE=TechKiteOFFICEappstore.settings.production
 
 
 Creating the Database Schema
@@ -112,7 +112,7 @@ Loading Initial Data
 --------------------
 To pre-populate the database with categories and other data run the following command::
 
-    python manage.py loaddata nextcloudappstore/core/fixtures/*.json
+    python manage.py loaddata TechKiteOFFICEappstore/core/fixtures/*.json
 
 Initializing Translations
 -------------------------
@@ -142,7 +142,7 @@ Then copy the files into the folders by executing the following commands::
     python manage.py collectstatic
     sudo chown -R www-data:www-data /var/www
 
-This will place the contents inside the folder configured under the key **STATIC_ROOT** and **MEDIA_ROOT** inside your **nextcloudappstore/settings/production.py**
+This will place the contents inside the folder configured under the key **STATIC_ROOT** and **MEDIA_ROOT** inside your **TechKiteOFFICEappstore/settings/production.py**
 
 Configuring the Web-Server
 --------------------------
@@ -158,19 +158,19 @@ Then adjust the config in **/etc/apache2/sites-enabled/default.conf** and add th
 
     WSGIDaemonProcess apps python-home=/path/to/appstore/venv python-path=/path/to/appstore
     WSGIProcessGroup apps
-    WSGIScriptAlias / /path/to/appstore/nextcloudappstore/wsgi.py
+    WSGIScriptAlias / /path/to/appstore/TechKiteOFFICEappstore/wsgi.py
     WSGIPassAuthorization On
     Alias /static/ /var/www/production-domain.com/static/
-    Alias /schema/apps/info.xsd /path/to/appstore/nextcloudappstore/api/v1/release/info.xsd
-    Alias /schema/apps/database.xsd /path/to/appstore/nextcloudappstore/api/v1/release/database.xsd
+    Alias /schema/apps/info.xsd /path/to/appstore/TechKiteOFFICEappstore/api/v1/release/info.xsd
+    Alias /schema/apps/database.xsd /path/to/appstore/TechKiteOFFICEappstore/api/v1/release/database.xsd
 
-    <Directory /path/to/appstore/nextcloudappstore>
+    <Directory /path/to/appstore/TechKiteOFFICEappstore>
         <Files wsgi.py>
             Require all granted
         </Files>
     </Directory>
 
-    <Directory /path/to/appstore/nextcloudappstore/api/v1/release>
+    <Directory /path/to/appstore/TechKiteOFFICEappstore/api/v1/release>
         <Files info.xsd>
             Require all granted
             Header always set X-Content-Type-Options nosniff
@@ -234,13 +234,13 @@ Once the App Store is up and running social login needs to be configured. The Ap
 
 GitHub is currently the only supported social login. In order to register the App Store, go to `your application settings page <https://github.com/settings/applications/new>`_ and enter the following details:
 
-* **Application name**: Nextcloud App Store
-* **Homepage URL**: https://apps.nextcloud.com
-* **Authorization callback URL**: https://apps.nextcloud.com/github/login/callback/
+* **Application name**: TechKiteOFFICE App Store
+* **Homepage URL**: https://apps.TechKiteOFFICE.com
+* **Authorization callback URL**: https://apps.TechKiteOFFICE.com/github/login/callback/
 
 Afterwards your **client id** and **client secret** are displayed. These need to be saved inside the database. To do that, either log into the admin interface, change your site's domain and add GitHub as a new social application or run the following command::
 
-    python manage.py setupsocial --github-client-id "CLIENT_ID" --github-secret "SECRET" --domain apps.nextcloud.com
+    python manage.py setupsocial --github-client-id "CLIENT_ID" --github-secret "SECRET" --domain apps.TechKiteOFFICE.com
 
 .. note:: The above mentioned domains need to be changed if you want to run the App Store on a different server.
 
@@ -249,10 +249,10 @@ Afterwards your **client id** and **client secret** are displayed. These need to
 
 .. _prod_install_release_sync:
 
-Sync Nextcloud Releases from GitHub
+Sync TechKiteOFFICE Releases from GitHub
 -----------------------------------
 
-The App Store needs to know about Nextcloud versions because:
+The App Store needs to know about TechKiteOFFICE versions because:
 
 * app releases are grouped by app version on the app detail page
 * you can :ref:`access a REST API to get all available versions <api-all-platforms>`
@@ -261,21 +261,21 @@ Before **3.2.0** releases were imported either manually or via the a shipped JSO
 
 The GitHub API now requires you to be authenticated so you need to `obtain and configure a GitHub OAuth2 token <https://help.github.com/articles/git-automation-with-oauth-tokens/>`_ before you run the sync command.
 
-After obtaining the token from GitHub, add it anywhere in your settings file (**nextcloudappstore/settings/production.py**), e.g.:
+After obtaining the token from GitHub, add it anywhere in your settings file (**TechKiteOFFICEappstore/settings/production.py**), e.g.:
 
 .. code-block:: python
 
     GITHUB_API_TOKEN = '4bab6b3dfeds8857371a48855dse87d38d4b7e65'
 
-You can run the command by giving it the oldest supported Nextcloud version::
+You can run the command by giving it the oldest supported TechKiteOFFICE version::
 
-     python manage.py syncnextcloudreleases --oldest-supported="12.0.0"
+     python manage.py syncTechKiteOFFICEreleases --oldest-supported="12.0.0"
 
 All existing versions prior to this release will be marked as not having a release, new versions will be imported and the latest version will be marked as current version.
 
 You can also do a test run and see what kind of versions would be imported::
 
-     python manage.py syncnextcloudreleases --oldest-supported="12.0.0" --print
+     python manage.py syncTechKiteOFFICEreleases --oldest-supported="12.0.0" --print
 
 To automate syncing you might want to add the command as a cronjob and schedule it every hour.
 
@@ -285,7 +285,7 @@ To automate syncing you might want to add the command as a cronjob and schedule 
 
 ::
 
-    venv/bin/python manage.py syncnextcloudreleases --oldest-supported="12.0.0"
+    venv/bin/python manage.py syncTechKiteOFFICEreleases --oldest-supported="12.0.0"
 
 Keeping Up To Date
 ------------------

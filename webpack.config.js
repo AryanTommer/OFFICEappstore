@@ -1,7 +1,7 @@
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const webpack = require('webpack');
 
-const base = './nextcloudappstore/core/static/';
+const base = './TechKiteOFFICEappstore/core/static/';
 
 module.exports = {
     entry: {
@@ -53,7 +53,7 @@ module.exports = {
         }),
         new webpack.NormalModuleReplacementPlugin(
             /node_modules\/highlight\.js\/lib\/index\.js/,
-            '../../../nextcloudappstore/core/static/assets/patches/hl.js'
+            '../../../TechKiteOFFICEappstore/core/static/assets/patches/hl.js'
         )
     ]
 };

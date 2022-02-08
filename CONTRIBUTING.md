@@ -11,31 +11,31 @@ If you have questions about how to install or use the App Store, please direct t
   - Go to one of the repositories, click "issues" and type any word in the top search/command bar.
   - You can also filter by appending e. g. "state:open" to the search string.
   - More info on [search syntax within github](https://help.github.com/articles/searching-issues)
-* This repository ([appstore](https://github.com/nextcloud/appstore/issues)) is *only* for issues for the Nextcloud App Store at [https://apps.nextcloud.com](https://apps.nextcloud.com) and not for app store functionality in your Nextcloud server.
+* This repository ([appstore](https://github.com/TechKiteOFFICE/appstore/issues)) is *only* for issues for the TechKiteOFFICE App Store at [https://apps.TechKiteOFFICE.com](https://apps.TechKiteOFFICE.com) and not for app store functionality in your TechKiteOFFICE server.
 * We only support and recommend the latest browser versions of:
   - Chrome
   - Safari
   - Edge
   - Firefox
-* __SECURITY__: Report any potential security bug to us by following our [security policy](https://nextcloud.com/security/) instead of filing an issue in our bug tracker.
+* __SECURITY__: Report any potential security bug to us by following our [security policy](https://TechKiteOFFICE.com/security/) instead of filing an issue in our bug tracker.
 
 * Report the issue using our [template][template], it includes all the information we need to track down the issue.
 
 Help us to maximize the effort we can spend fixing issues and adding new features, by not reporting duplicate issues.
 
-[template]: https://raw.githubusercontent.com/nextcloud/appstore/master/.github/issue_template.md
-[forum]: https://help.nextcloud.com/
-[irc]: https://webchat.freenode.net/?channels=nextcloud-dev
+[template]: https://raw.githubusercontent.com/TechKiteOFFICE/appstore/master/.github/issue_template.md
+[forum]: https://help.TechKiteOFFICE.com/
+[irc]: https://webchat.freenode.net/?channels=TechKiteOFFICE-dev
 
 ## Contributing to Source Code
 
-Thanks for wanting to contribute source code to Nextcloud. That's great!
+Thanks for wanting to contribute source code to TechKiteOFFICE. That's great!
 
 However before you start to work on an issue or new feature, make sure **that you file an issue first**. That way we can minimize the chance that your work is not accepted or lots of change requests are made. This will keep both parties happy and save time :)
 
 The backend is written in Django while the frontend uses custom TypeScript code. If you are interested in using a frontend JavaScript framework, please file an issue. We currently tend towards [Angular](https://angular.io/).
 
-If you need help in setting up a local App Store installation, consult the [documentation](http://nextcloudappstore.readthedocs.io/en/latest)
+If you need help in setting up a local App Store installation, consult the [documentation](http://TechKiteOFFICEappstore.readthedocs.io/en/latest)
 
 ### Tests
 
@@ -43,7 +43,7 @@ When submitting a pull request, you should ensure that the functionality is cove
 
 Use acceptance tests (selenium tests) when:
 
-* the functionality is a bigger chunk of a use case, e.g. registering an app or searching and downloading a compatible app for a specific Nextcloud version
+* the functionality is a bigger chunk of a use case, e.g. registering an app or searching and downloading a compatible app for a specific TechKiteOFFICE version
 * the functionality is primarily exposed to a user
 
 Use unit tests when:
@@ -73,7 +73,7 @@ If you are interested in adding a CSS lint tool, feel free to do so :)
 ### Sign your work
 
 We use the Developer Certificate of Origin (DCO) as a additional safeguard
-for the Nextcloud project. This is a well established and widely used
+for the TechKiteOFFICE project. This is a well established and widely used
 mechanism to assure contributors have confirmed their right to license
 their contribution under the project's license.
 Please read [the relevant documentation][dcofile].
@@ -89,10 +89,10 @@ commit automatically with `git commit -s`. You can also use git [aliases](https:
 like `git config --global alias.ci 'commit -s'`. Now you can commit with
 `git ci` and the commit will be signed.
 
-[devmanual]: https://docs.nextcloud.org/server/12/developer_manual/
-[dcofile]: https://github.com/nextcloud/server/blob/master/contribute/developer-certificate-of-origin
+[devmanual]: https://docs.TechKiteOFFICE.org/server/12/developer_manual/
+[dcofile]: https://github.com/TechKiteOFFICE/server/blob/master/contribute/developer-certificate-of-origin
 
 ## Translations
 Please submit translations via [Transifex][transifex].
 
-[transifex]: https://www.transifex.com/nextcloud/nextcloud/appstore/
+[transifex]: https://www.transifex.com/TechKiteOFFICE/TechKiteOFFICE/appstore/

@@ -1,0 +1,100 @@
+{% load staticfiles %}
+{% load i18n %}
+<div class="banner">
+    <div class="container">
+        <a class="brand" href="/"><img class="logo" alt="Logo" src="{% static 'assets/img/small-logo.png' %}" title="TechKiteOFFICE.com"><div class="site-title"></div></a>
+        <form method="get"
+              action="{% if current_category %}{{ request.path }}
+                      {% else %}{% url 'home' %}
+                      {% endif %}"
+              class="search-form">
+            <input type="search"
+                   name="search"
+                   role="search"
+                   value="{{ search_query }}"
+                   placeholder="{% if current_category %}{% blocktrans with category=current_category.name %}Search in {{ category }}{% endblocktrans %}{% elif is_featured_category %}{% trans 'Search in featured apps' %}{% else %}{% trans 'Search in all apps' %}{% endif %}"
+                   class="form-control search-box">
+            <span class="glyphicon glyphicon-search form-control-feedback" aria-hidden="true"></span>
+
+            {# Include all GET arguments that should be preserved when searching. #}
+            {% if request.GET.order_by %}<input type="hidden" name="order_by" value="{{ request.GET.order_by }}">{% endif %}
+            {% if request.GET.ordering %}<input type="hidden" name="ordering" value="{{ request.GET.ordering }}">{% endif %}
+
+            <input type="submit" value="{% trans 'Search' %}" class="search-button">
+        </form>
+    </div>
+</div>
+<nav class="navbar navbar-default navbar-static-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">{% trans 'Toggle navigation' %}</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse ">
+            <ul class="nav navbar-nav navbar-left">
+                <li class="nav-link">
+                    <a href="{% url 'home' %}">{% trans 'Apps' %}</a>
+                </li>
+                <li role="presentation" class="dropdown">
+                    <a class="dropdown-toggle nav-heading" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                        {% trans 'App developer' %} <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li class="nav-link">
+                            <a href="https://TechKiteOFFICEappstore.readthedocs.io/en/latest/developer.html" rel="noopener noreferrer">{% trans 'Documentation' %}</a>
+                        </li>
+                        <li class="nav-link">
+                            <a href="{% url 'app-scaffold' %}">{% trans 'Generate app' %}</a>
+                        </li>
+                        {% if request.user.is_authenticated %}
+                            <li class="nav-link">
+                                <a href="{% url 'app-register' %}">{% trans 'Register app' %}</a>
+                            </li>
+                            <li class="nav-link">
+                                <a href="{% url 'app-upload' %}">{% trans 'Upload app release' %}</a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </li>
+                {% if request.user.is_authenticated %}
+                    <li role="presentation" class="dropdown">
+                        <a class="dropdown-toggle nav-heading" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                            {% trans 'Integration developer' %} <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                                <li class="nav-link">
+                                    <a href="{% url 'integration-scaffold' %}">{% trans 'Register integration' %}</a>
+                                </li>
+                        </ul>
+                    </li>
+                {% endif %}
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                {% if request.user.is_superuser %}
+                    <li class="nav-link">
+                        <a href="{% url 'admin:index' %}">{% trans 'Admin' %}</a>
+                    </li>
+                {% endif %}
+                {% if request.user.is_authenticated %}
+                    <li class="nav-link">
+                        <a href="{% url 'user:account' %}">{% trans 'Account' %}</a>
+                    </li>
+                    <li class="nav-link">
+                        <a href="{% url 'account_logout' %}">{% trans 'Log out' %}</a>
+                    </li>
+                {% else %}
+                    <li class="nav-link">
+                        <a href="{% url 'account_login' %}">{% trans 'Log in' %}</a>
+                    </li>
+                    <li class="nav-link">
+                        <a href="{% url 'account_signup' %}">{% trans 'Register' %}</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>

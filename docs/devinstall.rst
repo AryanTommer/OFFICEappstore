@@ -32,7 +32,7 @@ Download the Source
 -------------------
 Clone the repository using git and change into it::
 
-    git clone https://github.com/nextcloud/appstore.git
+    git clone https://github.com/TechKiteOFFICE/appstore.git
     cd appstore
 
 App Store Setup
@@ -41,14 +41,14 @@ The project root contains a **Makefile** which allows you to quickly set everyth
 
     make dev-setup
 
-This will automatically set up the web app using **venv**, **SQLite** as database and create a default **development** settings file in **nextcloudappstore/settings/development.py**. You need to review the development settings and change them according to your setup. An admin user with name **admin** and password **admin** will also be created.
+This will automatically set up the web app using **venv**, **SQLite** as database and create a default **development** settings file in **TechKiteOFFICEappstore/settings/development.py**. You need to review the development settings and change them according to your setup. An admin user with name **admin** and password **admin** will also be created.
 
 Launching the Development Server
 --------------------------------
 The server can be started after activating the virtual environment first::
 
     source venv/bin/activate
-    export DJANGO_SETTINGS_MODULE=nextcloudappstore.settings.development
+    export DJANGO_SETTINGS_MODULE=TechKiteOFFICEappstore.settings.development
     python manage.py runserver
 
 The website is available at `http://127.0.0.1:8000 <http://127.0.0.1:8000>`_. Code changes will auto reload the server so happy developing! For more documentation on development, check out :doc:`storedeveloper`
@@ -56,11 +56,11 @@ The website is available at `http://127.0.0.1:8000 <http://127.0.0.1:8000>`_. Co
 Every time you start a new terminal session you will need to reactive the virtual environment and set the development settings::
 
     source venv/bin/activate
-    export DJANGO_SETTINGS_MODULE=nextcloudappstore.settings.development
+    export DJANGO_SETTINGS_MODULE=TechKiteOFFICEappstore.settings.development
 
 We therefore recommend creating a small bash alias in your **~/.bashrc**::
 
-    alias cda='cd path/to/appstore && source venv/bin/activate && export DJANGO_SETTINGS_MODULE=nextcloudappstore.settings.development'
+    alias cda='cd path/to/appstore && source venv/bin/activate && export DJANGO_SETTINGS_MODULE=TechKiteOFFICEappstore.settings.development'
 
 Keeping Up to Date
 ------------------

@@ -1,8 +1,8 @@
 App Developer Guide
 ===================
 
-Note: Documentation and a tutorial about App Development itself (vs "app development and the App Store") is found at 
-`https://docs.nextcloud.com/server/stable/developer_manual/app/index.html <https://docs.nextcloud.com/server/stable/developer_manual/app/index.html>`_.
+Note: Documentation and a tutorial about App Development itself (vs "app development and the App Store") is found at
+`https://docs.TechKiteOFFICE.com/server/stable/developer_manual/app/index.html <https://docs.TechKiteOFFICE.com/server/stable/developer_manual/app/index.html>`_.
 
 Most of today's developers publish their source code on GitHub, BitBucket, GitLab or on their own GitLab instance. These tools typically also provide a way to release new versions based on Git tags or by uploading custom archives.
 
@@ -24,13 +24,13 @@ Hosting the archive on a different host means of course that we can not guarante
 
 Obtaining a Certificate
 ~~~~~~~~~~~~~~~~~~~~~~~
-The certificates should be stored in **~/.nextcloud/certificates/** so first create the folder if it does not exist yet::
+The certificates should be stored in **~/.TechKiteOFFICE/certificates/** so first create the folder if it does not exist yet::
 
-    mkdir -p ~/.nextcloud/certificates/
+    mkdir -p ~/.TechKiteOFFICE/certificates/
 
 Then change into the directory::
 
-    cd ~/.nextcloud/certificates/
+    cd ~/.TechKiteOFFICE/certificates/
 
 and generate your private certificate and CSR::
 
@@ -42,11 +42,11 @@ Replace **APP_ID** with your app id, e.g. if your app had an id called **news** 
 
 .. note:: Keep in mind that an app id must only contain lowercase ASCII characters and underscores!
 
-Then post the contents of your **APP_ID.csr** (e.g. **~/.nextcloud/certificates/news.csr**) on `on our certificate repository <https://github.com/nextcloud/app-certificate-requests>`_ as pull request and configure your GitHub account to show your mail address in your profile.
+Then post the contents of your **APP_ID.csr** (e.g. **~/.TechKiteOFFICE/certificates/news.csr**) on `on our certificate repository <https://github.com/TechKiteOFFICE/app-certificate-requests>`_ as pull request and configure your GitHub account to show your mail address in your profile.
 
-We might ask you for further information to verify that you're the legitimate owner of the application. Make sure to keep the private key file (**APP_ID.key**, e.g. **~/.nextcloud/certificates/news.key**) secret and not disclose it to any third-parties.
+We might ask you for further information to verify that you're the legitimate owner of the application. Make sure to keep the private key file (**APP_ID.key**, e.g. **~/.TechKiteOFFICE/certificates/news.key**) secret and not disclose it to any third-parties.
 
-After we approved your certificate, we will post your signed public certificate (APP_ID.crt) as a response in your app's directory. Take the contents and store it in the same folder with the file name **APP_ID.crt** (e.g. **~/.nextcloud/certificates/news.crt**). Make sure to get rid of excess whitespace at the beginning and end of your file. Your public signed certificate's file contents should look similar to this::
+After we approved your certificate, we will post your signed public certificate (APP_ID.crt) as a response in your app's directory. Take the contents and store it in the same folder with the file name **APP_ID.crt** (e.g. **~/.TechKiteOFFICE/certificates/news.crt**). Make sure to get rid of excess whitespace at the beginning and end of your file. Your public signed certificate's file contents should look similar to this::
 
     -----BEGIN CERTIFICATE-----
     MIID+TCCAeECAhAMMA0GCSqGSIb3DQEBCwUAMG0xCzAJBgNVBAYTAlVTMQ8wDQYD
@@ -80,18 +80,18 @@ After we approved your certificate, we will post your signed public certificate 
 
 Registering an App
 ~~~~~~~~~~~~~~~~~~
-After you've obtained your signed public certificate you can use it to register your app id on the App Store. To do that either use the :ref:`REST API <api-register-app>` or use the App Store's `register app web interface <https://apps.nextcloud.com/developer/apps/new>`_.
+After you've obtained your signed public certificate you can use it to register your app id on the App Store. To do that either use the :ref:`REST API <api-register-app>` or use the App Store's `register app web interface <https://apps.TechKiteOFFICE.com/developer/apps/new>`_.
 
 The interface will ask you for the following things:
 
-* **Certificate**: Paste in the contents of your public certificate, e.g. **~/.nextcloud/certificates/news.crt**
+* **Certificate**: Paste in the contents of your public certificate, e.g. **~/.TechKiteOFFICE/certificates/news.crt**
 * **Signature**: A signature over your app id to verify that you own the private certificate. Can be calculated by using the following command::
 
-    echo -n "APP_ID" | openssl dgst -sha512 -sign ~/.nextcloud/certificates/APP_ID.key | openssl base64
+    echo -n "APP_ID" | openssl dgst -sha512 -sign ~/.TechKiteOFFICE/certificates/APP_ID.key | openssl base64
 
   where **APP_ID** is your app's id, e.g::
 
-    echo -n "news" | openssl dgst -sha512 -sign ~/.nextcloud/certificates/news.key | openssl base64
+    echo -n "news" | openssl dgst -sha512 -sign ~/.TechKiteOFFICE/certificates/news.key | openssl base64
 
 We will then verify the certificate and signature and register you as the app's owner. You are now able to publish releases.
 
@@ -99,7 +99,7 @@ We will then verify the certificate and signature and register you as the app's 
 
 Uploading an App Release
 ~~~~~~~~~~~~~~~~~~~~~~~~
-After you've registered your app you can upload your app's releases to the App Store. To do that either use the :ref:`REST API <api-create-release>` or use the App Store's `upload app release web interface <https://apps.nextcloud.com/developer/apps/releases/new>`_.
+After you've registered your app you can upload your app's releases to the App Store. To do that either use the :ref:`REST API <api-create-release>` or use the App Store's `upload app release web interface <https://apps.TechKiteOFFICE.com/developer/apps/releases/new>`_.
 
 The interface will ask you for the following things:
 
@@ -107,11 +107,11 @@ The interface will ask you for the following things:
 * **Nightly**: Check if you are uploading a nightly release
 * **Signature**: A signature over your release archive. Can be calculated by using the following command::
 
-    openssl dgst -sha512 -sign ~/.nextcloud/certificates/APP_ID.key /path/to/app.tar.gz | openssl base64
+    openssl dgst -sha512 -sign ~/.TechKiteOFFICE/certificates/APP_ID.key /path/to/app.tar.gz | openssl base64
 
   where **APP_ID** is your app's id, e.g::
 
-    openssl dgst -sha512 -sign ~/.nextcloud/certificates/news.key /path/to/news.tar.gz | openssl base64
+    openssl dgst -sha512 -sign ~/.TechKiteOFFICE/certificates/news.key /path/to/news.tar.gz | openssl base64
 
 We then download the archive and verify the signature. In addition we try to verify and use as much information as possible form the archive, e.g.:
 
@@ -129,9 +129,9 @@ Updating and Revoking a Certificate
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 If you've lost or leaked your private certificate you want to revoke and update your certificate:
 
-* Send a pull request with the new CSR for an already existing app `to our repository <hhttps://github.com/nextcloud/app-certificate-requests>`_ (overwrite the existing file, e.g. news/news.csr and delete the existing news/news.crt)
+* Send a pull request with the new CSR for an already existing app `to our repository <hhttps://github.com/TechKiteOFFICE/app-certificate-requests>`_ (overwrite the existing file, e.g. news/news.csr and delete the existing news/news.crt)
 * We will revoke your old certificate and sign your new certificate request
-* Then re-register your app certificate on the `app register page <https://apps.nextcloud.com/developer/apps/new>`_. This will delete all existing releases.
+* Then re-register your app certificate on the `app register page <https://apps.TechKiteOFFICE.com/developer/apps/new>`_. This will delete all existing releases.
 
 
 After you've obtained a new certificate, simply use it to register your app id again (only owners are allowed to do this). This will delete all previous releases from our server since their signature has become invalid.
@@ -141,7 +141,7 @@ Transferring Your App to a New Owner
 
 Transferring an app works similar to :ref:`registering an app <app-register>`: The new owner simply needs to register the app again using the public certificate and the signature.
 
-However by default this is restricted to the app's owner. To disable this restriction you first need to unlock your app for the owner transfer. You can do this by going to your **account** settings and choosing `Transfer app ownership <https://apps.nextcloud.com/account/transfer-apps>`_. On that page you can lock or unlock your apps for being transferred.
+However by default this is restricted to the app's owner. To disable this restriction you first need to unlock your app for the owner transfer. You can do this by going to your **account** settings and choosing `Transfer app ownership <https://apps.TechKiteOFFICE.com/account/transfer-apps>`_. On that page you can lock or unlock your apps for being transferred.
 
 After you unlocked your app for transfer, the new owner can then proceed to register the app again. If everything went fine the app is now transferred to the new owner and the transfer setting for that app is locked again.
 
@@ -155,7 +155,7 @@ App metadata is currently being read from the **appinfo/info.xml** and **CHANGEL
 
 info.xml
 ~~~~~~~~
-The info.xml is validated using an XML Schema which can be accessed `online <https://apps.nextcloud.com/schema/apps/info.xsd>`_.
+The info.xml is validated using an XML Schema which can be accessed `online <https://apps.TechKiteOFFICE.com/schema/apps/info.xsd>`_.
 
 A minimum valid **info.xml** would look like this:
 
@@ -163,7 +163,7 @@ A minimum valid **info.xml** would look like this:
 
     <?xml version="1.0"?>
     <info xmlns:xsi= "http://www.w3.org/2001/XMLSchema-instance"
-          xsi:noNamespaceSchemaLocation="https://apps.nextcloud.com/schema/apps/info.xsd">
+          xsi:noNamespaceSchemaLocation="https://apps.TechKiteOFFICE.com/schema/apps/info.xsd">
         <id>news</id>
         <name>News</name>
         <summary>An RSS/Atom feed reader</summary>
@@ -172,9 +172,9 @@ A minimum valid **info.xml** would look like this:
         <licence>agpl</licence>
         <author>Bernhard Posselt</author>
         <category>multimedia</category>
-        <bugs>https://github.com/nextcloud/news/issues</bugs>
+        <bugs>https://github.com/TechKiteOFFICE/news/issues</bugs>
         <dependencies>
-            <nextcloud min-version="10"/>
+            <TechKiteOFFICE min-version="10"/>
         </dependencies>
     </info>
 
@@ -184,7 +184,7 @@ A full blown example would look like this (needs to be utf-8 encoded):
 
     <?xml version="1.0"?>
     <info xmlns:xsi= "http://www.w3.org/2001/XMLSchema-instance"
-          xsi:noNamespaceSchemaLocation="https://apps.nextcloud.com/schema/apps/info.xsd">
+          xsi:noNamespaceSchemaLocation="https://apps.TechKiteOFFICE.com/schema/apps/info.xsd">
         <id>news</id>
         <name lang="de">Nachrichten</name>
         <name>News</name>
@@ -197,16 +197,16 @@ A full blown example would look like this (needs to be utf-8 encoded):
         <author>Alessandro Cosentino</author>
         <author>Jan-Christoph Borchardt</author>
         <documentation>
-            <user>https://github.com/nextcloud/news/wiki#user-documentation</user>
-            <admin>https://github.com/nextcloud/news#readme</admin>
-            <developer>https://github.com/nextcloud/news/wiki#developer-documentation</developer>
+            <user>https://github.com/TechKiteOFFICE/news/wiki#user-documentation</user>
+            <admin>https://github.com/TechKiteOFFICE/news#readme</admin>
+            <developer>https://github.com/TechKiteOFFICE/news/wiki#developer-documentation</developer>
         </documentation>
         <category>multimedia</category>
         <category>tools</category>
-        <website>https://github.com/nextcloud/news</website>
+        <website>https://github.com/TechKiteOFFICE/news</website>
         <discussion>https://your.forum.com</discussion>
-        <bugs>https://github.com/nextcloud/news/issues</bugs>
-        <repository>https://github.com/nextcloud/news</repository>
+        <bugs>https://github.com/TechKiteOFFICE/news/issues</bugs>
+        <repository>https://github.com/TechKiteOFFICE/news</repository>
         <screenshot small-thumbnail="https://example.com/1-small.png">https://example.com/1.png</screenshot>
         <screenshot>https://example.com/2.jpg</screenshot>
         <dependencies>
@@ -220,7 +220,7 @@ A full blown example would look like this (needs to be utf-8 encoded):
             <lib>curl</lib>
             <lib>SimpleXML</lib>
             <lib>iconv</lib>
-            <nextcloud min-version="9" max-version="10"/>
+            <TechKiteOFFICE min-version="9" max-version="10"/>
         </dependencies>
         <background-jobs>
             <job>OCA\DAV\CardDAV\Sync\SyncJob</job>
@@ -382,7 +382,7 @@ discussion
     * optional
     * must contain an URL to the project's discussion page/forum
     * will be rendered on the app detail page as the "ask question or discuss" button
-    * if absent, it will default to our forum at https://help.nextcloud.com/ and create a new category in the apps category
+    * if absent, it will default to our forum at https://help.TechKiteOFFICE.com/ and create a new category in the apps category
 bugs
     * required
     * must contain an URL to the project's bug tracker
@@ -422,8 +422,8 @@ dependencies/lib
     * can occur multiple times with different php extensions
     * can contain a **min-version** attribute (maximum 3 digits separated by dots)
     * can contain a **max-version** attribute (maximum 3 digits separated by dots)
-dependencies/nextcloud
-    * required on Nextcloud 11 or higher
+dependencies/TechKiteOFFICE
+    * required on TechKiteOFFICE 11 or higher
     * if absent white-listed owncloud versions will be taken from the owncloud element (see below)
     * must contain a **min-version** attribute (maximum 3 digits separated by dots)
     * can contain a **max-version** attribute (maximum 3 digits separated by dots)
@@ -538,7 +538,7 @@ sabre/plugins/plugin
 sabre/collections
     * optional
     * must contain at least one collection
-    * Collections allow apps to expose their own directory tree to the dav endpoint. They will be added to the root of the Nextcloud dav tree.
+    * Collections allow apps to expose their own directory tree to the dav endpoint. They will be added to the root of the TechKiteOFFICE dav tree.
 sabre/collections/collection
     * required
     * the PHP class name of the plugin
@@ -562,7 +562,7 @@ The following elements are either deprecated or for internal use only and will f
 
 database.xml
 ~~~~~~~~~~~~
-The database.xml is validated using an XML Schema which can be accessed `through the App Store <https://apps.nextcloud.com/schema/apps/database.xsd>`_.
+The database.xml is validated using an XML Schema which can be accessed `through the App Store <https://apps.TechKiteOFFICE.com/schema/apps/database.xsd>`_.
 
 A minimum valid **database.xml** would look like this:
 
@@ -570,7 +570,7 @@ A minimum valid **database.xml** would look like this:
 
     <?xml version="1.0"?>
     <database xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-              xsi:noNamespaceSchemaLocation="https://apps.nextcloud.com/schema/apps/database.xsd">
+              xsi:noNamespaceSchemaLocation="https://apps.TechKiteOFFICE.com/schema/apps/database.xsd">
         <table>
             <name>*dbprefix*blog_articles</name>
             <declaration>
@@ -585,7 +585,7 @@ A full blown example would look like this (needs to be utf-8 encoded):
 
     <?xml version="1.0"?>
     <database xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-              xsi:noNamespaceSchemaLocation="https://apps.nextcloud.com/schema/apps/database.xsd">
+              xsi:noNamespaceSchemaLocation="https://apps.TechKiteOFFICE.com/schema/apps/database.xsd">
         <table>
             <name>*dbprefix*blog_articles</name>
             <declaration>
@@ -632,7 +632,7 @@ A full blown example would look like this (needs to be utf-8 encoded):
         </table>
     </database>
 
-.. note:: While you might encounter valid elements like **create**, **overwrite**, **charset** or **sorting** they are not parsed by Nextcloud and can therefore be omitted safely
+.. note:: While you might encounter valid elements like **create**, **overwrite**, **charset** or **sorting** they are not parsed by TechKiteOFFICE and can therefore be omitted safely
 
 Changelog
 ~~~~~~~~~
@@ -663,8 +663,8 @@ Changelogs have to follow the `Keep a CHANGELOG format <http://keepachangelog.co
       [#1557](https://github.com/owncloud/mail/pull/1557) @ChristophWurst
 
     ### Changed
-    - Minimum server is Nextcloud 10/ownCloud 9.1
-      [#84](https://github.com/nextcloud/mail/pull/84) @ChristophWurst
+    - Minimum server is TechKiteOFFICE 10/ownCloud 9.1
+      [#84](https://github.com/TechKiteOFFICE/mail/pull/84) @ChristophWurst
     - Use session storage instead of local storage for client-side cache
       [#1612](https://github.com/owncloud/mail/pull/1612) @ChristophWurst
     - When deleting the current message, the next one is selected immediatelly
@@ -718,7 +718,7 @@ We provide an XML schema which can be used to validate and get IDE autocompletio
 
         <?xml version="1.0"?>
         <info xmlns:xsi= "http://www.w3.org/2001/XMLSchema-instance"
-              xsi:noNamespaceSchemaLocation="https://apps.nextcloud.com/schema/apps/info.xsd">
+              xsi:noNamespaceSchemaLocation="https://apps.TechKiteOFFICE.com/schema/apps/info.xsd">
 
               <!-- content here -->
 
@@ -730,7 +730,7 @@ We provide an XML schema which can be used to validate and get IDE autocompletio
 
         <?xml version="1.0"?>
         <database xmlns:xsi= "http://www.w3.org/2001/XMLSchema-instance"
-              xsi:noNamespaceSchemaLocation="https://apps.nextcloud.com/schema/apps/database.xsd">
+              xsi:noNamespaceSchemaLocation="https://apps.TechKiteOFFICE.com/schema/apps/database.xsd">
 
               <!-- content here -->
 

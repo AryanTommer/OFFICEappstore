@@ -46,9 +46,9 @@ Afterwards you want to import all the translated content in the database:
 Managing Translations
 ---------------------
 
-Translations are managed on `Transifex <https://www.transifex.com/nextcloud/nextcloud/dashboard/>`_. If you want to help translating the App Store, click the **Join team** button and `create an issue on our issue tracker <https://github.com/nextcloud/appstore/issues/new>`_ if your request takes longer than 2 days to process.
+Translations are managed on `Transifex <https://www.transifex.com/TechKiteOFFICE/TechKiteOFFICE/dashboard/>`_. If you want to help translating the App Store, click the **Join team** button and `create an issue on our issue tracker <https://github.com/TechKiteOFFICE/appstore/issues/new>`_ if your request takes longer than 2 days to process.
 
-All translatable languages for the App Store can be found on its `resources page <https://www.transifex.com/nextcloud/nextcloud/appstore/>`_. Select the language you want to translate and hit the **Translate** or **view strings online** button.
+All translatable languages for the App Store can be found on its `resources page <https://www.transifex.com/TechKiteOFFICE/TechKiteOFFICE/appstore/>`_. Select the language you want to translate and hit the **Translate** or **view strings online** button.
 
 Translated content will be pulled daily from Transifex.
 
