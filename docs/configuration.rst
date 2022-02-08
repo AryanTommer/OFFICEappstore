@@ -17,7 +17,7 @@ In order to get up a minimal production configuration you can extend the base pr
 
 .. code-block:: python
 
-    from nextcloudappstore.settings.baseproduction import *
+    from TechKiteOFFICEappstore.settings.baseproduction import *
 
     # generate the SECRET_KEY by yourself for instance by using the following command:
     # env LC_CTYPE=C tr -dc "a-zA-Z0-9-_\$\?" < /dev/urandom | head -c 64; echo
@@ -28,7 +28,7 @@ In order to get up a minimal production configuration you can extend the base pr
     # Email settings which are used to send mails (e.g. confirm account messages)
     # for more configuration options consult the Django documentation
     # https://docs.djangoproject.com/en/1.11/ref/settings/#std:setting-EMAIL_HOST
-    DEFAULT_FROM_EMAIL = 'appstore@nextcloud.com'
+    DEFAULT_FROM_EMAIL = 'appstore@TechKiteOFFICE.com'
     ADMINS = [('Your Name', 'your-mail@example.com')]
     EMAIL_HOST = 'localhost'
 
@@ -37,8 +37,8 @@ In order to get up a minimal production configuration you can extend the base pr
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'nextcloudappstore',
-            'USER': 'nextcloudappstore',
+            'NAME': 'TechKiteOFFICEappstore',
+            'USER': 'TechKiteOFFICEappstore',
             'PASSWORD': 'password',
             'HOST': '127.0.0.1',
             'PORT': '5432',
@@ -101,10 +101,10 @@ In order to get up a minimal production configuration you can extend the base pr
     #     'No .git directories': r'\.git$'
     # }
 
-    # DISCOURSE_URL = 'https://help.nextcloud.com'
+    # DISCOURSE_URL = 'https://help.TechKiteOFFICE.com'
 
     # If given a sub category will be created at this location
     # If not given a root category will be created
     # You can get the category id here at the /categories.json route, e.g.
-    # https://help.nextcloud.com/categories.json
+    # https://help.TechKiteOFFICE.com/categories.json
     # DISCOURSE_PARENT_CATEGORY_ID = 26

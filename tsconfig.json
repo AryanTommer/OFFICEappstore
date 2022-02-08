@@ -19,6 +19,6 @@
         ]
     },
     "include": [
-        "nextcloudappstore/core/static/assets/app/**/*"
+      "TechKiteOFFICEappstore/core/static/assets/app/**/*"
     ]
 }

@@ -48,7 +48,7 @@ def get_authors_file(suffix: str) -> str:
 
 
 def main() -> None:
-    ignore = {'Nextcloud bot'}
+    ignore = {'TechKiteOFFICE bot'}
     authors = get_git_authors()
     authors = filter(lambda name: name.strip() != '', authors)
     authors = [parse_git_author(author) for author in authors]

@@ -1,0 +1,58 @@
+{% load staticfiles %}
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="{{ request.LANGUAGE_CODE }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="{% trans 'The TechKiteOFFICE App Store - Upload your apps and install new apps onto your TechKiteOFFICE' %}">
+    <meta name="author" content="{% trans 'The TechKiteOFFICE Community' %}">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <link rel="shortcut icon" href="{% static 'assets/img/favicon.png' %}"/>
+    <link rel="apple-touch-icon" href="{% static 'assets/img/favicon-180.png' %}">
+    <title>{% block head-title %}{% endblock %}App Store - TechKiteOFFICE</title>
+    <link rel="stylesheet" href="{% static 'assets/css/fonts.css' %}" charset="utf-8">
+    <link rel="stylesheet"
+          href="{% static 'vendor/bootstrap/dist/css/bootstrap.min.css' %}" charset="utf-8">
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}" charset="utf-8">
+    <link rel="stylesheet" href="{% static 'assets/css/theme.css' %}" charset="utf-8">
+    {% block feeds %}
+        <link rel="alternate" type="application/atom+xml" title="{% trans 'Latest app releases' %}" href="{% url 'feeds-releases-atom' %}" />
+        <link rel="alternate" type="application/rss+xml" title="{% trans 'Latest app releases' %}" href="{% url 'feeds-releases-rss' %}" />
+    {% endblock %}
+    <script type="text/javascript" src="{% static 'vendor/bootstrap.native.min.js' %}" async></script>
+    {% block head %}{% endblock %}
+</head>
+
+<body>
+<div id="container">
+    {% block navbar %}{% include 'nav.html' %}{% endblock %}
+    <div class="container" id="body">
+        <div class="messages">
+            {% for message in messages %}
+                <div {% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %}>
+                    {{ message }}
+                </div>
+            {% endfor %}
+            {% block messages %}{% endblock %}
+        </div>
+        {% block content %}{% endblock %}
+    </div>
+    <footer class="navbar-default" id="footer">
+        <div class="container">
+            <ul class="nav navbar-nav navbar-left">
+                <li class="nav-link">
+                    <a href="https://github.com/TechKiteOFFICE/appstore" rel="noreferrer noopener">{% trans 'Fork me on GitHub' %}</a>
+                </li>
+                <li class="nav-link">
+                    <a href="https://TechKiteOFFICE.com/privacy/" rel="noreferrer noopener">{% trans 'Privacy and legal' %}</a>
+                </li>
+                <li class="nav-link">
+                    <a href="https://TechKiteOFFICE.com/impressum/" rel="noreferrer noopener">{% trans 'Legal Notice' %}</a>
+                </li>
+            </ul>
+        </div>
+    </footer>
+</div>
+</body>
+</html>

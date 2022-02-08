@@ -12,5 +12,5 @@ exclude_lines =
 [run]
 relative_files = True
 omit =
-    nextcloudappstore/wsgi.py
-    nextcloudappstore/core/migrations/*
+    TechKiteOFFICEappstore/wsgi.py
+    TechKiteOFFICEappstore/core/migrations/*

@@ -23,7 +23,7 @@ jobs:
         image: postgres:10
         env:
           POSTGRES_USER: postgres
-          POSTGRES_DB: nextcloudappstore
+          POSTGRES_DB: TechKiteOFFICEappstore
           POSTGRES_PASSWORD: postgres
         ports:
           - 5432:5432
@@ -58,7 +58,7 @@ jobs:
           make l10n venv_bin=""
           yarn add tslint
       - name: Linter
-        run: ./node_modules/.bin/tslint "./nextcloudappstore/core/static/assets/**/*.ts"
+        run: ./node_modules/.bin/tslint "./TechKiteOFFICEappstore/core/static/assets/**/*.ts"
       - name: Tests
         run: xvfb-run --auto-servernum --server-args="-screen 0 1920x1080x8" make test venv_bin=""
       - name: Coverall

@@ -91,9 +91,9 @@ qthelp:
 	@echo
 	@echo "Build finished; now you can run "qcollectiongenerator" with the" \
 	      ".qhcp project file in $(BUILDDIR)/qthelp, like this:"
-	@echo "# qcollectiongenerator $(BUILDDIR)/qthelp/nextcloudappstore.qhcp"
+	@echo "# qcollectiongenerator $(BUILDDIR)/qthelp/TechKiteOFFICEappstore.qhcp"
 	@echo "To view the help file:"
-	@echo "# assistant -collectionFile $(BUILDDIR)/qthelp/nextcloudappstore.qhc"
+	@echo "# assistant -collectionFile $(BUILDDIR)/qthelp/TechKiteOFFICEappstore.qhc"
 
 .PHONY: applehelp
 applehelp:
@@ -110,8 +110,8 @@ devhelp:
 	@echo
 	@echo "Build finished."
 	@echo "To view the help file:"
-	@echo "# mkdir -p $$HOME/.local/share/devhelp/nextcloudappstore"
-	@echo "# ln -s $(BUILDDIR)/devhelp $$HOME/.local/share/devhelp/nextcloudappstore"
+	@echo "# mkdir -p $$HOME/.local/share/devhelp/TechKiteOFFICEappstore"
+	@echo "# ln -s $(BUILDDIR)/devhelp $$HOME/.local/share/devhelp/TechKiteOFFICEappstore"
 	@echo "# devhelp"
 
 .PHONY: epub

@@ -49,14 +49,14 @@ and start the daemon::
 
 Then clone the repository and build the image::
 
-    git clone https://github.com/nextcloud/appstore
+    git clone https://github.com/TechKiteOFFICE/appstore
     cd appstore
     git checkout tags/VERSION
     sudo docker-compose build production
 
 Export your container to be able to upload it to your production server::
 
-    sudo docker save -o nextcloudappstore.tar.gz appstore_production
+    sudo docker save -o TechKiteOFFICEappstore.tar.gz appstore_production
 
 .. note:: Docker Hub integration would be nice
 
@@ -64,7 +64,7 @@ Export your container to be able to upload it to your production server::
 Deploying the Image
 ===================
 
-Upload the **nextcloudappstore.tar.gz** archive onto your production server.
+Upload the **TechKiteOFFICEappstore.tar.gz** archive onto your production server.
 
 
 Initial Setup
@@ -110,12 +110,12 @@ The following config file represents a minimal `uwsgi config <http://uwsgi-docs.
 
     [uwsgi]
     chdir = /srv
-    wsgi-file = /srv/nextcloudappstore/wsgi.py
+    wsgi-file = /srv/TechKiteOFFICEappstore/wsgi.py
     master = true
     processes = 10
     vacuum = true
-    uid = nextcloudappstore
-    gid = nextcloudappstore
+    uid = TechKiteOFFICEappstore
+    gid = TechKiteOFFICEappstore
     socket = 0.0.0.0:8000
 
 If your server does not support the uWSGI protocol natively, replace **socket** with::
@@ -142,9 +142,9 @@ To allow the container to connect to it open **/etc/postgresql/9.5/main/postgres
 
 Then whitelist your container IP in **/etc/postgresql/9.5/main/pg_hba.conf**::
 
-    host    nextcloudappstore nextcloudappstore 172.17.0.2/32       md5
+    host    TechKiteOFFICEappstore TechKiteOFFICEappstore 172.17.0.2/32       md5
 
-.. note:: This expects the database user and database to be named **nextcloudappstore**, your container IP to be **172.17.0.2** and host to run on **172.17.0.1**
+.. note:: This expects the database user and database to be named **TechKiteOFFICEappstore**, your container IP to be **172.17.0.2** and host to run on **172.17.0.1**
 
 Then enable and start it::
 
@@ -156,8 +156,8 @@ and create a user and database::
     sudo -s
     su - postgres
     psql
-    CREATE USER nextcloudappstore WITH PASSWORD 'password';
-    CREATE DATABASE nextcloudappstore OWNER nextcloudappstore;
+    CREATE USER TechKiteOFFICEappstore WITH PASSWORD 'password';
+    CREATE DATABASE TechKiteOFFICEappstore OWNER TechKiteOFFICEappstore;
     \q
     exit
 
@@ -170,11 +170,11 @@ First install nginx::
 
     sudo apt-get install nginx
 
-Then create a new configuration for it in **/etc/nginx/sites-available/nextcloudappstore**:
+Then create a new configuration for it in **/etc/nginx/sites-available/TechKiteOFFICEappstore**:
 
 .. code-block:: nginx
 
-    upstream nextcloudappstore {
+    upstream TechKiteOFFICEappstore {
         server 127.0.0.1:8000;
     }
 
@@ -189,12 +189,12 @@ Then create a new configuration for it in **/etc/nginx/sites-available/nextcloud
     server {
         listen 443 ssl http2;
         listen [::]:443 ssl http2;
-        server_name apps.nextcloud.com;
+        server_name apps.TechKiteOFFICE.com;
         charset     utf-8;
 
         # replace this with your ssl certificates
-        ssl_certificate /etc/nginx/ssl/nextcloudappstore.crt;
-        ssl_certificate_key /etc/nginx/ssl/nextcloudappstore.key;
+        ssl_certificate /etc/nginx/ssl/TechKiteOFFICEappstore.crt;
+        ssl_certificate_key /etc/nginx/ssl/TechKiteOFFICEappstore.key;
         ssl_session_timeout 1d;
         ssl_session_cache shared:SSL:50m;
         ssl_session_tickets off;
@@ -220,7 +220,7 @@ Then create a new configuration for it in **/etc/nginx/sites-available/nextcloud
         }
 
         location / {
-            uwsgi_pass nextcloudappstore;
+            uwsgi_pass TechKiteOFFICEappstore;
             include uwsgi_params;
         }
     }
@@ -228,7 +228,7 @@ Then create a new configuration for it in **/etc/nginx/sites-available/nextcloud
 Finally replace your default configuration::
 
     sudo rm /etc/nginx/sites-enabled/default
-    sudo ln -s /etc/nginx/sites-available/nextcloudappstore /etc/nginx/sites-enabled/default
+    sudo ln -s /etc/nginx/sites-available/TechKiteOFFICEappstore /etc/nginx/sites-enabled/default
     sudo systemctl enable nginx
     sudo systemctl restart nginx
 
@@ -240,16 +240,16 @@ TBD
 Creating Docker-Compose Configuration
 -------------------------------------
 
-Either create your own configuration or grab a copy of our `docker-compose.yml <https://github.com/nextcloud/appstore/blob/master/docker-compose.yml>`_ and modify it if necessary. Place the file in your designated directory::
+Either create your own configuration or grab a copy of our `docker-compose.yml <https://github.com/TechKiteOFFICE/appstore/blob/master/docker-compose.yml>`_ and modify it if necessary. Place the file in your designated directory::
 
     cd /srv
-    sudo wget https://raw.githubusercontent.com/nextcloud/appstore/master/docker-compose.yml
+    sudo wget https://raw.githubusercontent.com/TechKiteOFFICE/appstore/master/docker-compose.yml
 
 Starting the Image
 ------------------
 First load the latest uploaded image::
 
-    sudo docker load -i /path/to/nextcloudappstore.tar.gz
+    sudo docker load -i /path/to/TechKiteOFFICEappstore.tar.gz
 
 Then change into your server directory and start the container::
 
@@ -281,13 +281,13 @@ Once the App Store is up and running social login needs to be configured. The Ap
 
 GitHub is currently the only supported social login. In order to register the App Store, go to `your application settings page <https://github.com/settings/applications/new>`_ and enter the following details:
 
-* **Application name**: Nextcloud App Store
-* **Homepage URL**: https://apps.nextcloud.com
-* **Authorization callback URL**: https://apps.nextcloud.com/github/login/callback/
+* **Application name**: TechKiteOFFICE App Store
+* **Homepage URL**: https://apps.TechKiteOFFICE.com
+* **Authorization callback URL**: https://apps.TechKiteOFFICE.com/github/login/callback/
 
 Afterwards your **client id** and **client secret** are displayed. These need to be saved inside the database. To do that, either log into the admin interface, change your site's domain and add GitHub as a new social application or run the following command::
 
-    sudo docker-compose exec python manage.py setupsocial --github-client-id "CLIENT_ID" --github-secret "SECRET" --domain apps.nextcloud.com
+    sudo docker-compose exec python manage.py setupsocial --github-client-id "CLIENT_ID" --github-secret "SECRET" --domain apps.TechKiteOFFICE.com
 
 .. note:: The above mentioned domains need to be changed if you want to run the App Store on a different server.
 
@@ -296,25 +296,25 @@ Afterwards your **client id** and **client secret** are displayed. These need to
 
 .. _prod_install_release_sync_docker:
 
-Sync Nextcloud Releases from GitHub
+Sync TechKiteOFFICE Releases from GitHub
 -----------------------------------
 
-The App Store needs to know about Nextcloud versions because:
+The App Store needs to know about TechKiteOFFICE versions because:
 
 * app releases are grouped by app version on the app detail page
 * you can :ref:`access a REST API to get all available versions <api-all-platforms>`
 
 Before **3.2.0** releases were imported either manually or via the a shipped JSON file. This process proved to be very tedious. In **3.2.0** a command was introduced to sync releases (git tags) directly from GitHub.
 
-You can run the command by giving it the oldest supported Nextcloud version::
+You can run the command by giving it the oldest supported TechKiteOFFICE version::
 
-     sudo docker-compose exec python manage.py syncnextcloudreleases --oldest-supported="12.0.0"
+     sudo docker-compose exec python manage.py syncTechKiteOFFICEreleases --oldest-supported="12.0.0"
 
 All existing versions prior to this release will be marked as not having a release, new versions will be imported and the latest version will be marked as current version.
 
 You can also do a test run and see what kind of versions would be imported::
 
-     sudo docker-compose exec python manage.py syncnextcloudreleases --oldest-supported="12.0.0" --print
+     sudo docker-compose exec python manage.py syncTechKiteOFFICEreleases --oldest-supported="12.0.0" --print
 
 The GitHub API is rate limited to 60 requests per second. Depending on how far back your **oldest-supported** version goes a single command might fetch multiple pages of releases. If you want to run the command more than 10 times per hour it is recommended to `obtain and configure a GitHub OAuth2 token <https://help.github.com/articles/git-automation-with-oauth-tokens/>`_.
 

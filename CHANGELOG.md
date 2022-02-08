@@ -8,10 +8,10 @@
 
 ## [4.0.0]  - 2018-11-10
 
-### Added 
+### Added
 
-- Support for Nextcloud 14
-- Add info.xml validation for fulltextsearch and dashboard 
+- Support for TechKiteOFFICE 14
+- Add info.xml validation for fulltextsearch and dashboard
 
 ### Changed
 
@@ -19,9 +19,9 @@
 - Make test output more verbose
 - Pin down Travis-CI versions to match Ubuntu 16.04
 
-### Removed 
+### Removed
 
-- Removed Support for Nextcloud 11
+- Removed Support for TechKiteOFFICE 11
 - Removed compiled JavaScript files from version control
 
 ### Security
@@ -43,23 +43,23 @@
 
 ### Added
 
-- Add support for generating apps for Nextcloud 13
+- Add support for generating apps for TechKiteOFFICE 13
 - Add support for personal setting tags in info.xml and ids instead of URLs for documentation
-- Add another flag to differentiate between supported and unreleased Nextcloud releases
+- Add another flag to differentiate between supported and unreleased TechKiteOFFICE releases
 
 ## [3.2.0]  - 2018-02-04
 
 ### Added
 
-- **syncnextcloudreleases** command to sync Nextcloud releases directly from GitHub
+- **syncTechKiteOFFICEreleases** command to sync TechKiteOFFICE releases directly from GitHub
 
 ### Removed
 
-- Nextcloud releases are not imported via fixtures anymore, use the **syncnextcloudreleases** command
+- TechKiteOFFICE releases are not imported via fixtures anymore, use the **syncTechKiteOFFICEreleases** command
 
 ### Security
 
-- Narrow down fixtures to not accidentally import test data on production systems. Check if a user with the user name **admin** was created. If so delete that user from your system.  
+- Narrow down fixtures to not accidentally import test data on production systems. Check if a user with the user name **admin** was created. If so delete that user from your system.
 
 ## [3.1.2] - 2018-02-02
 
@@ -125,34 +125,34 @@
 - Added docs on how to configure IntelliJ/PyCharm and commit project configuration files
 - **API (v1)**: future proof signatures by adding a **signatureDigest** field to each app release filled with the hashing algorithm
 - **API (v1)**: add **discussion** field to each app that links to its forum
-- **API (v1)**: Add a new API route to fetch all Nextcloud releases
+- **API (v1)**: Add a new API route to fetch all TechKiteOFFICE releases
 
 ### Changed
 
-- Bring back **discussion** tag in info.xml which allows you to define your own forum link. If absent, it will default to our forum at help.nextcloud.com
+- Bring back **discussion** tag in info.xml which allows you to define your own forum link. If absent, it will default to our forum at help.TechKiteOFFICE.com
 - Use one unique button style for all buttons, #402
 - Moved certificate and scaffolding to separate folders
-- Moved Nextcloud public certificate and CRL to new folder
+- Moved TechKiteOFFICE public certificate and CRL to new folder
 - Trim text of most info.xml elements
-  
+
 ### Removed
 
-- Removed **auth** category, use **security** instead 
+- Removed **auth** category, use **security** instead
 - Dropped Node.js 7 support and require Node.js 8+
-- Dropped support for Nextcloud 9 and 10:
-  - owncloud tag in info.xml will not be migrated to nextcloud tags anymore
+- Dropped support for TechKiteOFFICE 9 and 10:
+  - owncloud tag in info.xml will not be migrated to TechKiteOFFICE tags anymore
   - ocsid will not be parsed anymore and was removed from the info.xsd
   - old categories will not be migrated anymore (tool, game, productivity, other)
   - presence of owncloud tag will not be validated anymore for apps depending on 9 and 10
   - v0 API was removed
-  - nextcloudrelease.json fixtures for 9 and 10 were removed
-  - Nextcloud 10 apps can not be generated anymore
+  - TechKiteOFFICErelease.json fixtures for 9 and 10 were removed
+  - TechKiteOFFICE 10 apps can not be generated anymore
 
 ## Fixed
 
 - Fixed an issue that would sometimes not import translated categories properly
 - Better error message when database.xml validation fails
-- Update travis configuration and fix test suite for generating Nextcloud 12 apps
+- Update travis configuration and fix test suite for generating TechKiteOFFICE 12 apps
 - Treat and encode all scaffolding files as unicode and set the correct size, #522
 
 ## [2.0.0] - 2017-06-02
@@ -164,14 +164,14 @@
 ### Added
 
 - Lazy-load images in app list
-- Added new Nextcloud version fixtures
+- Added new TechKiteOFFICE version fixtures
 - Added support for several new XML elements in schema
 - Added support to switch between language comments
 - Added support to easily post ratings in multiple languages
 - Added support for running New Relic on servers
 - Added ability to transfer app ownership
 - Added commands to update tokens, set a default password for an admin user for development and verify an email address
-- Added Nextcloud 12 app template
+- Added TechKiteOFFICE 12 app template
 - Added validation for database.xml files
 - Added support for Apache 2.0 and MPL 2.0 licenses
 
@@ -188,7 +188,7 @@
 
 - Migrated frontend code to Typescript + Webpack
 - Require bug tracker to present in info.xml
-- Require max-version to be present for Nextcloud versions
+- Require max-version to be present for TechKiteOFFICE versions
 - Extracted api and account settings into a separate app
 - Moved app schema to a different path, make sure to adjust your web-server config
 - Migrated to yarn as package manager
@@ -208,15 +208,15 @@
 - Add ability to add nightlies and pre-releases to app release feed by appending ?prerelease=true&nightly=true to feed url
 - Add changelog to app release feed
 - Add number of recent and overall ratings to API
-- Add app development templates for Nextcloud 10
+- Add app development templates for TechKiteOFFICE 10
 - Add a way for developers to define a smaller thumbnail for a screenshot and expose it in the API
 
 ### Changed
 
 - Information related to the app and not the app release should only be updated when stable, new releases are uploaded
-- Manage Nextcloud releases in the admin interface instead of a Python file
+- Manage TechKiteOFFICE releases in the admin interface instead of a Python file
 - Apps need to provide a maximum version in addition to the minimum version
-- Apps do not need to provide an owncloud tag anymore for Nextcloud 11
+- Apps do not need to provide an owncloud tag anymore for TechKiteOFFICE 11
 - RSS and Atom feed links now redirect to the app store app detail page instead of the download link. The download link is now available at the bottom of the entry
 
 ### Removed
@@ -225,7 +225,7 @@
 
 ### Fixed
 
-- Apps depending on Nextcloud minor or patch versions are now rendered on the app detail and releases page
+- Apps depending on TechKiteOFFICE minor or patch versions are now rendered on the app detail and releases page
 - Fix styling bug that would sometimes hide the app resource links when in mobile mode
 - Allow digits in app id, #370
 - Do not expose incompatible app releases in REST API
@@ -240,7 +240,7 @@
 - Generate apps through the web interface
 - Add validation for command tags in info.xml
 - Parse appid/CHANGELOG.md if present following the keep a changelog format
-- Add legacy API so Nextcloud 9 and 10 can switch to the new store
+- Add legacy API so TechKiteOFFICE 9 and 10 can switch to the new store
 - Allow semver pre-releases, e.g. 1.0.0-alpha
 - Featured flags are now exposed in the API
 

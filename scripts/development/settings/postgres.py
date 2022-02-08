@@ -1,5 +1,5 @@
 DATABASES['default']['ENGINE'] = 'django.db.backends.postgresql'
-DATABASES['default']['NAME'] = 'nextcloudappstore'
+DATABASES['default']['NAME'] = 'TechKiteOFFICEappstore'
 DATABASES['default']['USER'] = 'postgres'
 DATABASES['default']['PASSWORD'] = 'postgres'
 DATABASES['default']['PORT'] = '5432'

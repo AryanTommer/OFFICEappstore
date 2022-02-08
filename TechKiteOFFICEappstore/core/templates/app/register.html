@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load staticfiles %}
+
+{% block head-title %}{% trans 'Register app' %} - {% endblock %}
+
+{% block head %}
+    <script defer src="{% static 'public/app/register.js' %}" type="text/javascript"></script>
+{% endblock %}
+
+{% block content %}
+
+    <div class="app-form">
+        <h1>{% trans 'Register app' %}</h1>
+        <hr>
+        <p>{% blocktrans %}For more information on how to obtain the certificate and create the signature, check out the <a href="http://TechKiteOFFICEappstore.readthedocs.io/en/latest/developer.html" rel="noopener norefferer">app developer guide</a>.{% endblocktrans %}</p>
+        <p class="text-danger">{% trans 'This form can also be used to update existing certificates, however only the app owner is allowed to do so. Updating an app certificate will delete all of its already uploaded releases!' %}</p>
+        <form id="app-register-form" method="post" action="{% url 'api:v1:app-register' %}">
+            <span data-l10n-id="msg-invalid-certificate" hidden>{% trans 'Not a public certificate' %}</span>
+            <span data-l10n-id="msg-form-success" hidden>{% trans 'App registered.' %}</span>
+            <div><div class="alert alert-success global-success-msg" hidden></div></div>
+            <div><div class="alert alert-danger global-error-msg" hidden></div></div>
+
+            {% csrf_token %}
+            {% include 'form-fields.html' %}
+
+            <input type="submit" id="submit" class="btn btn-primary btn-block"
+                   value="{% trans 'Register' %}">
+        </form>
+    </div>
+{% endblock %}
